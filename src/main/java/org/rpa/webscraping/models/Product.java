@@ -1,15 +1,19 @@
 package org.rpa.webscraping.models;
 
+import java.awt.*;
+
 public class Product {
     private String description;
-    private String price;
+    private Double price;
 
     public Product() {
     }
 
     public Product(String description, String price) {
+        String numericalPrice = price.replaceAll("[R$ .]", "");
+        numericalPrice = numericalPrice.replace(",", ".");
         this.description = description;
-        this.price = price;
+        this.price = Double.parseDouble(numericalPrice);
     }
 
     public String getDescription() {
@@ -20,11 +24,11 @@ public class Product {
         this.description = description;
     }
 
-    public String getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(Double price) {
         this.price = price;
     }
 
@@ -32,7 +36,7 @@ public class Product {
     public String toString() {
         return "Product{" +
                 "description='" + description + '\'' +
-                ", price='" + price + '\'' +
+                ", price=" + price +
                 '}';
     }
 }

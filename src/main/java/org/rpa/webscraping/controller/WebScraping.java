@@ -45,7 +45,10 @@ public class WebScraping {
         for(int i = 0; i < productsDescriptions.size(); i++){
             products.add(new Product(productsDescriptions.get(i).getText(), productsPrice.get(i).getText()));
         }
-        System.out.println(products.size());
+        for(Product product : products){
+            System.out.println(product);
+        }
+        System.out.println("Produtos instanciado: " + products.size());
     }
 
     private static void delay(long delay) {
