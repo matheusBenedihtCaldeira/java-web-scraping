@@ -1,11 +1,14 @@
 package org.rpa.webscraping.controller;
 
+import org.checkerframework.checker.units.qual.A;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
+import org.rpa.webscraping.models.Product;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -33,10 +36,16 @@ public class WebScraping {
         WebElement input = driver.findElement(By.xpath("//input[@id=\"input-busca\"]"));
         input.sendKeys("placa de video 4060");
         input.submit();
-        delay(5000);
+        delay(2000);
 
         List<WebElement> productsDescriptions = driver.findElements(By.xpath("//span[@class=\"sc-d79c9c3f-0 nlmfp sc-cdc9b13f-16 eHyEuD nameCard\"]"));
-        List<WebElement> productsPrice = driver.findElements(By.xpath("//div[@class=\"sc-620f2d27-0 bEWgyj availablePricesCard\"]"));
+        List<WebElement> productsPrice = driver.findElements(By.xpath("//span[@class=\"sc-620f2d27-2 bMHwXA priceCard\"]"));
+        ArrayList<Product> products = new ArrayList<>();
+
+        for(int i = 0; i < productsDescriptions.size(); i++){
+            products.add(new Product(productsDescriptions.get(i).getText(), productsPrice.get(i).getText()));
+        }
+        System.out.println(products.size());
     }
 
     private static void delay(long delay) {
