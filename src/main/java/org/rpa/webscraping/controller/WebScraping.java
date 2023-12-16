@@ -3,8 +3,6 @@ package org.rpa.webscraping.controller;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.edge.EdgeOptions;
 
@@ -38,7 +36,7 @@ public class WebScraping {
         delay(5000);
 
         List<WebElement> productsDescriptions = driver.findElements(By.xpath("//span[@class=\"sc-d79c9c3f-0 nlmfp sc-cdc9b13f-16 eHyEuD nameCard\"]"));
-        System.out.println(productsDescriptions);
+        List<WebElement> productsPrice = driver.findElements(By.xpath("//div[@class=\"sc-620f2d27-0 bEWgyj availablePricesCard\"]"));
     }
 
     private static void delay(long delay) {
